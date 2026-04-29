@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { useCurrencyConverter } from './hooks/useCurrencyConverter';
 import { CurrencyField } from '../CurrencyField';
@@ -18,7 +19,11 @@ export const CurrencyConverter = () => {
         conversionError,
     } = useCurrencyConverter();
 
-    const conversionResult = conversion?.result.toString() ?? '';
+    const toCurrencyPrecision = useMemo(
+        () => currencies?.find(c => c.short_code === toCurrency)?.precision ?? 4,
+        [currencies, toCurrency],
+    );
+    const conversionResult = conversion?.result.toFixed(toCurrencyPrecision) ?? '';
 
     if (currenciesError) {
         return <Text style={styles.error}>Failed to load currencies. Please try again.</Text>;
@@ -49,7 +54,7 @@ export const CurrencyConverter = () => {
             )}
             {conversion && (
                 <Text style={styles.rate}>
-                    1 {fromCurrency} = {conversion.rate.toFixed(4)} {toCurrency}
+                    1 {fromCurrency} = {conversion.rate.toFixed(toCurrencyPrecision)} {toCurrency}
                 </Text>
             )}
         </View>

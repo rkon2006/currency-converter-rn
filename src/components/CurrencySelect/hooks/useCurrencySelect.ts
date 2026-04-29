@@ -23,5 +23,9 @@ export const useCurrencySelect = ({ onChange, value }: UseCurrencySelectParams) 
         setOpen(false);
     };
 
-    return { open, pending, handleOpen, handleDone, handleCancel, setPending };
+    const handleSetPending = (value: string) => {
+        setPending(value);
+    }
+
+    return { open, pending, handleOpen, handleDone, handleCancel, handleSetPending };
 }

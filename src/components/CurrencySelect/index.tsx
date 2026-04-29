@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Dimensions, Modal, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import type { Currency } from '../../types';
@@ -18,7 +17,7 @@ export const CurrencySelect = ({ currencies, value, onChange, isLoading }: Props
         handleCancel,
         handleDone,
         handleOpen,
-        setPending,
+        handleSetPending,
     } = useCurrencySelect({ onChange, value });
 
     if (isLoading) {
@@ -48,7 +47,7 @@ export const CurrencySelect = ({ currencies, value, onChange, isLoading }: Props
                             <Picker
                                 style={styles.pickerWrapper}
                                 selectedValue={pending}
-                                onValueChange={setPending}
+                                onValueChange={handleSetPending}
                             >
                                 {currencies.map((c) => (
                                     <Picker.Item
@@ -111,7 +110,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         borderTopLeftRadius: 12,
         borderTopRightRadius: 12,
-        height: '50%',
+        height: '40%',
     },
     pickerWrapper: {
         flex: 1,

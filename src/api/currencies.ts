@@ -4,13 +4,14 @@ const BASE_URL = 'https://api.currencybeacon.com/v1';
 const API_KEY = process.env.EXPO_PUBLIC_CURRENCY_API_KEY;
 
 interface CurrenciesResponse {
-    response: { short_code: string; name: string }[];
+    response: { short_code: string; name: string; precision: number; }[];
 }
 
 interface ConvertResponse {
     response: {
         amount: number;
         value: number;
+        precision: number;
     };
 }
 
