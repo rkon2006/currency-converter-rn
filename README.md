@@ -12,7 +12,7 @@ npm run android  # run on Android emulator
 ```
 
 Run 
-```
+```bash
 cp .env.example .env # create .env based on .env.example
 ```
 
